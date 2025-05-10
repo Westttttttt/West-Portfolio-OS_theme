@@ -13,7 +13,7 @@ type Tool =
    | "Todo App"
    | "Creator"
    | "Paint"
-   | "My Pc"
+   | "My Pc";
 
 type openToolsState = {
    openTools: Tool[];
@@ -33,8 +33,14 @@ const openToolsSlice = createSlice({
             state.openTools.push(newTool);
          }
       },
+      removeCurrentOpenTools: (state, actions) => {
+         state.openTools = state.openTools.filter(
+            (tools) => tools !== actions.payload
+         );
+      },
    },
 });
 
-export const { addCurrentOpenTools } = openToolsSlice.actions;
+export const { addCurrentOpenTools, removeCurrentOpenTools } =
+   openToolsSlice.actions;
 export default openToolsSlice.reducer;
