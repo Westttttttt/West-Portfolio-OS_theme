@@ -1,11 +1,11 @@
+import ToolsRender from "@/components/common/ToolsRender";
 import TaskBar from "@/components/taskbarComponents/Taskbar";
-// import CalculatorTools from "@/components/tools/Calculator";
 
 export default function Home() {
    return (
-      <div className="home-bg w-full relative h-screen bg-cover flex justify-center">
+      <div className="home-bg w-full h-screen bg-cover">
          <TaskBar />
-         {/* <CalculatorTools /> */}
+         <ToolsRender />
       </div>
    );
 }

@@ -1,7 +1,4 @@
-
-
-const CalculatorTools = () => {
-   
+const Calculator = () => {
    return (
       <div>
          <h1>Calculator</h1>
@@ -9,4 +6,4 @@ const CalculatorTools = () => {
    );
 };
 
-export default CalculatorTools;
+export default Calculator;

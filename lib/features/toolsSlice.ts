@@ -8,11 +8,12 @@ type Tool =
    | "Notepad"
    | "Chatbot"
    | "Games"
-   | "Stop watch"
+   | "Stop Watch"
    | "Calculator"
-   | "Todo app"
+   | "Todo App"
    | "Creator"
-   | "Paint";
+   | "Paint"
+   | "My Pc"
 
 type openToolsState = {
    openTools: Tool[];
@@ -28,7 +29,9 @@ const openToolsSlice = createSlice({
    reducers: {
       addCurrentOpenTools: (state, actions) => {
          const newTool: Tool = actions.payload;
-         state.openTools.push(newTool);
+         if (!state.openTools.includes(actions.payload)) {
+            state.openTools.push(newTool);
+         }
       },
    },
 });
