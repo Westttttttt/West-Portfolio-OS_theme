@@ -7,6 +7,7 @@ import {
    Laptop,
    ListTodo,
    NotepadText,
+   Paintbrush,
    SquareTerminal,
    Timer,
 } from "lucide-react";
@@ -29,4 +30,5 @@ export const taskBarIcons = [
    { name: "Calculator", icon: Calculator },
    { name: "Todo app", icon: ListTodo },
    { name: "Creator", icon: CircleUser },
+   { name: "Paint", icon: Paintbrush },
 ];
