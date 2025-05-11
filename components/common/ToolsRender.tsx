@@ -2,7 +2,7 @@
 
 import { RootState } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";
-import React from "react";
+import React, { RefObject } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import Calculator from "../tools/Calculator";
 import CodeEditor from "../tools/CodeEditor";
@@ -37,7 +37,11 @@ const appRegistry: Record<string, React.ElementType> = {
    "Todo App": TodoApp,
 };
 
-const ToolsRender = () => {
+const ToolsRender = ({
+   containerRef,
+}: {
+   containerRef: RefObject<HTMLDivElement | null>;
+}) => {
    const currOpenTools = useSelector(
       (state: RootState) => state.openTools.openTools
    );
@@ -55,15 +59,25 @@ const ToolsRender = () => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0 }}
-                  className="flex flex-col backdrop-blur-md"
+                  drag
+                  dragConstraints={containerRef} // limit where i can drag
+                  whileDrag={{ scale: 0.9, cursor: "pointer" }}
+                  dragElastic={0}
+                  dragMomentum={false}
+                  className="flex flex-col bg-[#1c1c1c] border border-[#fafafa6a rounded-xl overflow-hidden bg-linear-to-bl from bg-[#1c1c1c] tobg-white "
                >
-                  <div className="flex gap-4 text-right justify-end w-full rounded-t-xl pr-3 py-1 bg-none">
-                     <Minus className="text-gray-400 size-5 hover:opacity-90 hover:bg-[#f2edf21f] rounded-full p-1" />
-                     <Maximize2 className="text-gray-400 size-5 hover:opacity-90 hover:bg-[#f2edf21f] rounded-full p-1" />
-                     <X
-                        className="text-gray-400 size-5 hover:opacity-90 hover:bg-[#f2edf21f] rounded-full p-1"
-                        onClick={() => dispatch(removeCurrentOpenTools(tools))}
-                     />
+                  <div className="flex gap-4 text-right justify-between w-full rounded-t-xl pr-3 py-1 bg-[#1e1e1e] pl-4 items-center">
+                     <p className="text-xs">{tools}</p>
+                     <div className="flex gap-4">
+                        <Minus className="text-gray-400 size-5 hover:opacity-90 hover:bg-[#f2edf21f] rounded-full p-1" />
+                        <Maximize2 className="text-gray-400 size-5 hover:opacity-90 hover:bg-[#f2edf21f] rounded-full p-1" />
+                        <X
+                           className="text-gray-400 size-5 hover:opacity-90 hover:bg-[#f2edf21f] rounded-full p-1"
+                           onClick={() =>
+                              dispatch(removeCurrentOpenTools(tools))
+                           }
+                        />
+                     </div>
                   </div>
                   <AppComponent />
                </motion.div>

@@ -1,12 +1,12 @@
 "use client";
 
-import { Delete } from "lucide-react";
-import { motion } from "motion/react";
 import { useState } from "react";
+import { Delete } from "lucide-react";
 
 const Calculator = () => {
    const [input, setInput] = useState("");
    const [result, setResult] = useState("");
+   const [history, setHistory] = useState<string[]>([]);
 
    const handleClick = (value: string) => {
       if (value === "C") {
@@ -14,59 +14,83 @@ const Calculator = () => {
          setResult("");
       } else if (value === "=") {
          try {
-            const res = eval(input);
+            const sanitizedInput = input
+               .replace(/×/g, "*")
+               .replace(/÷/g, "/")
+               .replace(/%/g, "/100");
+            const res = eval(sanitizedInput);
             setResult(String(res));
+            setHistory([...history, `${input} = ${res}`]);
+            setInput(String(res));
          } catch {
             setResult("Error");
          }
-      } else if (value === "x") {
-         setInput(input.slice(0, input.length - 1));
+      } else if (value === "⌫") {
+         setInput(input.slice(0, -1));
       } else {
          setInput((prev) => prev + value);
       }
    };
 
    const buttons = [
-      "7",
-      "8",
-      "9",
-      "x",
-      "4",
-      "5",
-      "6",
-      "*",
-      "1",
-      "2",
-      "3",
-      "-",
-      "0",
-      ".",
-      "/",
-      "=",
-      "+",
-      "C",
+      ["C", "%", "+", "⌫"],
+      ["7", "8", "9", "×"],
+      ["4", "5", "6", "-"],
+      ["1", "2", "3", "0"],
+      [".", "="],
    ];
 
    return (
-      <motion.div className="w-82 h-[30rem] border rounded-b-xl backdrop-blur-md bg-white/10 p-4 flex flex-col">
-         <div className="bg-black/50 text-white p-4 rounded text-right min-h-[5rem]">
-            <div className="text-lg text-gray-300">{input || "0"}</div>
-            <div className="text-xl font-bold">{result || ""}</div>
-         </div>
-         <div className="flex flex-wrap gap-4 mt-6 w-full justify-center">
-            {buttons.map((btn) => (
-               <motion.button
-                  key={btn}
-                  className="bg-[#111111b1] text-gray-400 cursor-pointer overflow-hidden text-lg font-bold hover:bg-[#111111b1] h-14 w-14 flex items-center justify-center rounded-2xl"
-                  onClick={() => handleClick(btn)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.2 }}
-               >
-                  {btn === "x" ? <Delete /> : btn && btn === "*" ? "x" : btn}
-               </motion.button>
+      <div className="w-72 mx-auto ">
+         {/* History Display */}
+         <div className="p-4 text-right text-gray-400 text-sm h-12 overflow-hidden">
+            {history.slice(-3).map((calc, index) => (
+               <div key={index} className="truncate">
+                  {/* {calc}   */}
+               </div>
             ))}
          </div>
-      </motion.div>
+
+         {/* Main Display */}
+         <div className="p-4 text-right">
+            <div className="text-4xl text-white font-light mb-2">
+               {result || input || "0"}
+            </div>
+         </div>
+
+         {/* Buttons Grid */}
+         <div className="grid grid-cols-4 gap-[1px] bg-[#2d2d2d]">
+            {buttons.map((row, i) => (
+               <div key={i} className="grid grid-cols-4 col-span-4 gap-[1px]">
+                  {row.map((btn) => (
+                     <button
+                        key={btn}
+                        onClick={() => handleClick(btn)}
+                        className={`
+                           ${btn === "=" || btn === "." ? "col-span-2" : ""}
+                           h-16
+                           bg-[#1c1c1c]
+                           hover:bg-[#2d2d2d]
+                           transition-colors
+                           ${
+                              ["C", "⌫", "%", "×", "-", "+", "="].includes(btn)
+                                 ? "text-blue-400"
+                                 : "text-white"
+                           }
+                           text-xl
+                           font-light
+                           flex
+                           items-center
+                           justify-center
+                        `}
+                     >
+                        {btn === "⌫" ? <Delete size={20} /> : btn}
+                     </button>
+                  ))}
+               </div>
+            ))}
+         </div>
+      </div>
    );
 };
 
