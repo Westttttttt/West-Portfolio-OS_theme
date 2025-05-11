@@ -14,6 +14,20 @@ import {
 import { PiSpotifyLogoBold } from "react-icons/pi";
 import { VscVscode } from "react-icons/vsc";
 
+import Calculatorr from "../components/tools/Calculator";
+import CodeEditor from "../components/tools/CodeEditor";
+import Creator from "../components/tools/Creator";
+import Games from "../components/tools/Games";
+import MiniSpotify from "../components/tools/MiniSpotify";
+import MyPc from "../components/tools/MyPc";
+import Notepad from "../components/tools/Notepad";
+import Paint from "../components/tools/Paint";
+import Settings from "../components/tools/Settings";
+import StopWatch from "../components/tools/StopWatch";
+import Terminal from "../components/tools/Terminal";
+import TodoApp from "../components/tools/TodoApp";
+import Chatbot from "../components/tools/Chatbot";
+
 export const taskBarIcons = [
    {
       name: "My Pc",
@@ -32,3 +46,19 @@ export const taskBarIcons = [
    { name: "Creator", icon: CircleUser },
    { name: "Paint", icon: Paintbrush },
 ];
+
+export const appRegistry: Record<string, React.ElementType> = {
+   Calculator: Calculatorr,
+   Chatbot,
+   "Code Editor": CodeEditor,
+   Creator,
+   Games,
+   "Mini Spotify": MiniSpotify,
+   "My Pc": MyPc,
+   Notepad,
+   Paint,
+   Settings,
+   "Stop Watch": StopWatch,
+   Terminal,
+   "Todo App": TodoApp,
+};

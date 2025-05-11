@@ -41,7 +41,7 @@ const Calculator = () => {
    ];
 
    return (
-      <div className="w-72 mx-auto ">
+      <div className="w-72 mx-auto border">
          {/* History Display */}
          <div className="p-4 text-right text-gray-400 text-sm h-12 overflow-hidden">
             {history.slice(-3).map((calc, index) => (
@@ -59,7 +59,7 @@ const Calculator = () => {
          </div>
 
          {/* Buttons Grid */}
-         <div className="grid grid-cols-4 gap-[1px] bg-[#2d2d2d]">
+         <div className="grid grid-cols-4 gap-[1px] bg-[#2d2d2d] ">
             {buttons.map((row, i) => (
                <div key={i} className="grid grid-cols-4 col-span-4 gap-[1px]">
                   {row.map((btn) => (
