@@ -2,12 +2,12 @@
 
 import { RootState } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";
-import React, { RefObject, useState } from "react";
+import React, { RefObject } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { appRegistry } from "@/constants/constant";
 import { cn } from "@/lib/utils";
 import ToolsRenderer from "./ToolsRenderer";
-import { Tool } from "@/lib/features/toolsSlice";
+import { setFocusTool } from "@/lib/features/toolsSlice";
 
 const ToolsRender = ({
    containerRef,
@@ -20,11 +20,16 @@ const ToolsRender = ({
    const minimizeTools = useSelector(
       (state: RootState) => state.toolState.minimizeTools
    );
+   const fullScreenTools = useSelector(
+      (state: RootState) => state.toolState.fullScreenTools
+   );
+   const foucusTool = useSelector(
+      (state: RootState) => state.toolState.focusTool
+   );
 
    const dispatch = useDispatch();
-   const [fullScreen, setFullScreen] = useState(false);
-   const [foucusTool, setFocusTool] = useState<Tool | string>("");
-   console.log(foucusTool);
+   // const [foucusTool, setFocusTool] = useState<Tool | string>("");
+   // console.log(foucusTool);
 
    return (
       <AnimatePresence>
@@ -43,27 +48,25 @@ const ToolsRender = ({
                   exit={{ scale: 0 }}
                   drag
                   dragConstraints={containerRef} // limit where i can drag
-                  whileDrag={{ scale: 0.9, cursor: "grab"}}
+                  whileDrag={{ scale: 0.9, cursor: "grab" }}
                   dragElastic={0}
                   dragMomentum={false}
                   className={cn(
                      "flex flex-col bg-[#1c1c1c] border border-[#fafafa6a rounded-xl overflow-hidden bg-linear-to-bl from bg-[#1c1c1c] tobg-white flex items-center absolute",
-                     fullScreen && "w-full h-full",
+                     fullScreenTools.includes(tools) && "w-full h-full",
                      minimizeTools.includes(tools) && "hidden",
-                     foucusTool === tools && "z-50"
+                     foucusTool === tools && "z-3"
                   )}
                   onPointerDown={() => {
-                     setFocusTool(tools);
+                     dispatch(setFocusTool(tools));
                   }}
                >
                   <ToolsRenderer
                      tools={tools}
-                     fullScreen={fullScreen}
-                     setFullScreen={setFullScreen}
                      AppComponent={AppComponent}
                      dispatch={dispatch}
                      key={tools}
-                     focusTool={foucusTool}
+                     fullScreenTools={fullScreenTools}
                   />
                </motion.div>
             );

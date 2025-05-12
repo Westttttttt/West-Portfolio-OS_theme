@@ -1,6 +1,10 @@
 "use client";
 
-import { addCurrentOpenTools, Tool } from "@/lib/features/toolsSlice";
+import {
+   addCurrentOpenTools,
+   setFocusTool,
+   Tool,
+} from "@/lib/features/toolsSlice";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,7 +32,10 @@ const Icons = ({ Icon, name }: Props) => {
                "text-gray-400 stroke-2 hover:scale-125 transition-all size-6 cursor-pointer ",
                name == "Code Editor" && "stroke-0"
             )}
-            onClick={() => dispatch(addCurrentOpenTools(name))}
+            onClick={() => {
+               dispatch(addCurrentOpenTools(name));
+               dispatch(setFocusTool(name));
+            }}
          />
          {(minimizeTools.includes(name as Tool) ||
             currOpenTools.includes(name as Tool)) && (

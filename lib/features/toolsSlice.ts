@@ -18,11 +18,15 @@ export type Tool =
 type toolState = {
    openTools: Tool[];
    minimizeTools: Tool[];
+   fullScreenTools: Tool[];
+   focusTool: Tool | null;
 };
 
 const initialState: toolState = {
    openTools: [],
    minimizeTools: [],
+   fullScreenTools: [],
+   focusTool: null,
 };
 
 const toolsSlice = createSlice({
@@ -46,17 +50,38 @@ const toolsSlice = createSlice({
          );
       },
       addMinimizeTools: (state, actions) => {
-         const newMinimizeTools = actions.payload;
+         const newMinimizeTool = actions.payload;
          if (!state.minimizeTools.includes(actions.payload)) {
-            state.minimizeTools.push(newMinimizeTools);
+            state.minimizeTools.push(newMinimizeTool);
          }
       },
-      // openMinimizeTools: (state, actions) => {
-      //    const newOpenMinimizeTools = actions.payload;
-      // },
+
+      addFullScreenTools: (state, actions) => {
+         const newFullScreenTool = actions.payload;
+         if (!state.fullScreenTools.includes(actions.payload)) {
+            state.fullScreenTools.push(newFullScreenTool);
+         }
+      },
+
+      removeFullScreenTools: (state, actions) => {
+         state.fullScreenTools = state.fullScreenTools.filter(
+            (tool) => tool != actions.payload
+         );
+      },
+
+      setFocusTool: (state, actions) => {
+         const newFocusTool = actions.payload;
+         state.focusTool = newFocusTool;
+      },
    },
 });
 
-export const { addCurrentOpenTools, removeCurrentOpenTools, addMinimizeTools } =
-   toolsSlice.actions;
+export const {
+   addCurrentOpenTools,
+   removeCurrentOpenTools,
+   addMinimizeTools,
+   addFullScreenTools,
+   removeFullScreenTools,
+   setFocusTool
+} = toolsSlice.actions;
 export default toolsSlice.reducer;
