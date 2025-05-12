@@ -12,6 +12,7 @@ const IconsAndTooltip = ({
    };
 }) => {
    const [hoveredIndex, setHoveredIndex] = useState<string | null>(null);
+
    return (
       <div
          className="group relative"

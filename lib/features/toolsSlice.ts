@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-type Tool =
+export type Tool =
    | "Settings"
    | "Terminal"
    | "Code Editor"
@@ -15,16 +15,18 @@ type Tool =
    | "Paint"
    | "My Pc";
 
-type openToolsState = {
+type toolState = {
    openTools: Tool[];
+   minimizeTools: Tool[];
 };
 
-const initialState: openToolsState = {
+const initialState: toolState = {
    openTools: [],
+   minimizeTools: [],
 };
 
-const openToolsSlice = createSlice({
-   name: "currentOpenTools",
+const toolsSlice = createSlice({
+   name: "toolState",
    initialState,
    reducers: {
       addCurrentOpenTools: (state, actions) => {
@@ -32,15 +34,29 @@ const openToolsSlice = createSlice({
          if (!state.openTools.includes(actions.payload)) {
             state.openTools.push(newTool);
          }
+         if (state.minimizeTools.includes(actions.payload)) {
+            state.minimizeTools = state.minimizeTools.filter(
+               (tools) => tools != actions.payload
+            );
+         }
       },
       removeCurrentOpenTools: (state, actions) => {
          state.openTools = state.openTools.filter(
             (tools) => tools !== actions.payload
          );
       },
+      addMinimizeTools: (state, actions) => {
+         const newMinimizeTools = actions.payload;
+         if (!state.minimizeTools.includes(actions.payload)) {
+            state.minimizeTools.push(newMinimizeTools);
+         }
+      },
+      // openMinimizeTools: (state, actions) => {
+      //    const newOpenMinimizeTools = actions.payload;
+      // },
    },
 });
 
-export const { addCurrentOpenTools, removeCurrentOpenTools } =
-   openToolsSlice.actions;
-export default openToolsSlice.reducer;
+export const { addCurrentOpenTools, removeCurrentOpenTools, addMinimizeTools } =
+   toolsSlice.actions;
+export default toolsSlice.reducer;

@@ -1,5 +1,5 @@
 "use client";
-import ToolsRender from "@/components/common/ToolsRender";
+import ToolsRendererWrapper from "@/components/common/ToolsRendererWrapper";
 import TaskBar from "@/components/taskbarComponents/Taskbar";
 import { useRef } from "react";
 
@@ -10,7 +10,7 @@ export default function Home() {
          className="home-bg w-full h-screen bg-cover flex items-center justify-center overflow-hidden"
          ref={containerRef}
       >
-         <ToolsRender containerRef={containerRef} />
+         <ToolsRendererWrapper containerRef={containerRef} />
          <TaskBar />
       </div>
    );

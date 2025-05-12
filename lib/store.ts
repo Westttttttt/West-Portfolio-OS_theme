@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import openToolsReducer from "./features/toolsSlice";
+import toolState from "./features/toolsSlice";
 
 export const store = configureStore({
    reducer: {
-      openTools: openToolsReducer,
+      toolState: toolState,
    },
 });
 

@@ -25,3 +25,6 @@
 i) Layout: this property will give us smooth animattion whenever we resize or change the size of tag (whatever we called)
 
 ii) dragMomentum: this fix the element when we drag,i mean suppose when we drag too fast it's move automtically this property fixes that problem :)
+
+#### Points to keep that in mind!
+AnimatePresence only works when components are mounted or unmounted (i.e., added to or removed from the DOM). So if you're just toggling visibility with className="hidden", the component is still mounted — meaning AnimatePresence can't animate it.
