@@ -7,7 +7,7 @@ export default function Home() {
    const containerRef = useRef<HTMLDivElement | null>(null);
    return (
       <div
-         className="home-bg w-full h-screen bg-cover flex items-center justify-center overflow-hidden"
+         className="home-bg w-full h-screen relative bg-cover flex items-center justify-center overflow-hidden"
          ref={containerRef}
       >
          <ToolsRendererWrapper containerRef={containerRef} />

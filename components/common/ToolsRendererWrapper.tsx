@@ -43,13 +43,14 @@ const ToolsRender = ({
                   exit={{ scale: 0 }}
                   drag
                   dragConstraints={containerRef} // limit where i can drag
-                  whileDrag={{ scale: 0.9, cursor: "grab", zIndex: 10000 }}
+                  whileDrag={{ scale: 0.9, cursor: "grab"}}
                   dragElastic={0}
                   dragMomentum={false}
                   className={cn(
-                     "flex flex-col bg-[#1c1c1c] border border-[#fafafa6a rounded-xl overflow-hidden bg-linear-to-bl from bg-[#1c1c1c] tobg-white flex items-center",
-                     fullScreen && "w-full h-full z-0 ",
-                     minimizeTools.includes(tools) && "hidden"
+                     "flex flex-col bg-[#1c1c1c] border border-[#fafafa6a rounded-xl overflow-hidden bg-linear-to-bl from bg-[#1c1c1c] tobg-white flex items-center absolute",
+                     fullScreen && "w-full h-full",
+                     minimizeTools.includes(tools) && "hidden",
+                     foucusTool === tools && "z-50"
                   )}
                   onPointerDown={() => {
                      setFocusTool(tools);

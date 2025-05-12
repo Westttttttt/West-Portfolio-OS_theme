@@ -28,7 +28,12 @@ const ToolsRenderer = ({
    return (
       <>
          {" "}
-         <div className="flex gap-4 text-right justify-between w-full rounded-t-xl pr-3 py-1 bg-[#1e1e1e] pl-4 items-center">
+         <div
+            className={cn(
+               "flex gap-4 text-right justify-between w-full rounded-t-xl pr-3 py-1 bg-[#1e1e1e] pl-4 items-center z-auto",
+               focusTool === tools && "z-50"
+            )}
+         >
             <p className="text-xs">{tools}</p>
             <div className="flex gap-4">
                <Minus
@@ -55,12 +60,7 @@ const ToolsRenderer = ({
                />
             </div>
          </div>
-         <div
-            className={cn(
-               "w-full h-full flex justify-center items-center z-auto",
-               focusTool === tools && "z-50"
-            )}
-         >
+         <div className="w-full h-full flex justify-center items-center z-auto">
             <AppComponent />
          </div>
       </>
