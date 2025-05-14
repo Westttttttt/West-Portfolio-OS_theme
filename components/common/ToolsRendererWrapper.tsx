@@ -28,8 +28,6 @@ const ToolsRender = ({
    );
 
    const dispatch = useDispatch();
-   // const [foucusTool, setFocusTool] = useState<Tool | string>("");
-   // console.log(foucusTool);
 
    return (
       <AnimatePresence>
@@ -42,17 +40,17 @@ const ToolsRender = ({
                <motion.div
                   key={tools}
                   layout
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  transition={{ stiffness: 300, damping: 30 }}
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   exit={{ scale: 0 }}
                   drag
                   dragConstraints={containerRef} // limit where i can drag
-                  whileDrag={{ scale: 0.9, cursor: "grab" }}
+                  whileDrag={{ cursor: "grab" }}
                   dragElastic={0}
                   dragMomentum={false}
                   className={cn(
-                     "flex flex-col bg-[#1c1c1c] border border-[#fafafa6a rounded-xl overflow-hidden bg-linear-to-bl from bg-[#1c1c1c] tobg-white flex items-center absolute",
+                     "flex flex-col bg-[#1c1c1c] border border-[#fafafa6a rounded-xl overflow-hidden bg-linear-to-bl from bg-[#1c1c1c] tobg-white flex items-center",
                      fullScreenTools.includes(tools) && "w-full h-full",
                      minimizeTools.includes(tools) && "hidden",
                      foucusTool === tools && "z-3"

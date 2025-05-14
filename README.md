@@ -15,6 +15,13 @@
 10. Implement Drag features, thanks to motion
 11. Implement Resize features 
 
+#### May 🗓️ May 13, 2025 – Progress Update
+
+1. Implemented minimize features
+2. Thinking 1000 times whether should i ass resizable or not 
+3. And i think ui part is mostly done
+
+
 ##### 💡 Things I learned on the way
 
 1. Brush up my redux-toolkit knowledge(More like learning for the first time , i mean i forgot around 99% of it , as i always use zustand)
