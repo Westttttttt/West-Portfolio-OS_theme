@@ -1,7 +1,5 @@
 const CodeEditor = () => {
-   return (
-      <h1>CodeEditor</h1>
-   )
-}
+    return <h1>CodeEditor</h1>;
+};
 
-export default CodeEditor
+export default CodeEditor;

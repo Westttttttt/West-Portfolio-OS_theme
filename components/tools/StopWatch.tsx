@@ -1,7 +1,5 @@
 const StopWatch = () => {
-   return (
-      <h1>StopWatch</h1>
-   )
-}
+    return <h1>StopWatch</h1>;
+};
 
-export default StopWatch
+export default StopWatch;

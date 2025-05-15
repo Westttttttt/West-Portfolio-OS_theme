@@ -1,7 +1,5 @@
 const Notepad = () => {
-   return (
-      <h1>Notepad</h1>
-   )
-}
+    return <h1>Notepad</h1>;
+};
 
-export default Notepad
+export default Notepad;

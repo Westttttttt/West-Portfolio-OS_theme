@@ -1,7 +1,5 @@
 const Paint = () => {
-   return (
-      <h1>Paint</h1>
-   )
-}
+    return <h1>Paint</h1>;
+};
 
-export default Paint
+export default Paint;

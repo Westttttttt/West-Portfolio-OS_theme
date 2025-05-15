@@ -1,7 +1,5 @@
 const Terminal = () => {
-   return (
-      <h1>Terminal</h1>
-   )
-}
+    return <h1>Terminal</h1>;
+};
 
-export default Terminal
+export default Terminal;

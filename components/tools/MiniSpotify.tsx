@@ -1,7 +1,5 @@
 const MiniSpotify = () => {
-   return (
-      <h1>MiniSpotify</h1>
-   )
-}
+    return <h1>MiniSpotify</h1>;
+};
 
-export default MiniSpotify
+export default MiniSpotify;
