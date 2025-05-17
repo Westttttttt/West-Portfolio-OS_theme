@@ -30,6 +30,7 @@
 
 1. Make Stop watch app work ^~^
 2. Learn new things about re-render in react
+3. Done creator app 
 
 ##### 💡 Things I learned on the way
 
