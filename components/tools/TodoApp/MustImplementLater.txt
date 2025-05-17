@@ -1,4 +1,4 @@
 ##Optimization
 
 1.Make Seperate component for TodoForm and TodoRender to reduce re-render and optimise the performance
-2. Follow point no 1:)
+2. Need to change the screen size when resize

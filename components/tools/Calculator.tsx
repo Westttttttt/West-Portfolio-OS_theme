@@ -59,7 +59,7 @@ const Calculator = () => {
             </div>
 
             {/* Buttons Grid */}
-            <div className="grid grid-cols-4 gap-[1px] bg-[#2d2d2d] ">
+            <div className="grid grid-cols-4 gap-[1px] border-t">
                 {buttons.map((row, i) => (
                     <div
                         key={i}
@@ -72,9 +72,6 @@ const Calculator = () => {
                                 className={`
                            ${btn === "=" || btn === "." ? "col-span-2" : ""}
                            h-16
-                           bg-[#1c1c1c]
-                           hover:bg-[#2d2d2d]
-                           transition-colors
                            ${
                                ["C", "⌫", "%", "×", "-", "+", "="].includes(btn)
                                    ? "text-blue-400"
@@ -85,6 +82,7 @@ const Calculator = () => {
                            flex
                            items-center
                            justify-center
+                           cursor-pointer
                         `}
                             >
                                 {btn === "⌫" ? <Delete size={20} /> : btn}

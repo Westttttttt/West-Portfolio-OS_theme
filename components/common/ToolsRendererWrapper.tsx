@@ -55,7 +55,7 @@ const ToolsRender = ({
                         dragElastic={0}
                         dragMomentum={false}
                         className={cn(
-                            "flex flex-col bg-[#1c1c1c] border border-[#fafafa6a rounded-xl overflow-hidden bg-linear-to-bl from bg-[#222222] tobg-white flex items-center",
+                            "flex flex-col backdrop-blur-3xl border border-[#fafafa6a rounded-xl overflow-hidden  flex items-center",
                             fullScreenTools.includes(tools) && "w-full h-full",
                             minimizeTools.includes(tools) && "hidden",
                             foucusTool === tools && "z-3",

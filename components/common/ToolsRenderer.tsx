@@ -28,7 +28,7 @@ const ToolsRenderer = ({
         <>
             {" "}
             <div
-                className="flex gap-4 text-right justify-between w-full rounded-t-xl pr-3 py-1 bg-[#1e1e1e] pl-4 items-center"
+                className="flex gap-4 text-right justify-between w-full rounded-t-xl pr-3 py-1 pl-4 items-center border-b"
                 onMouseEnter={() => setIsDraggable(true)}
                 onMouseOut={() => setIsDraggable(false)}
             >
