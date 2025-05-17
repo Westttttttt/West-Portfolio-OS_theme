@@ -2,7 +2,7 @@
 
 import { RootState } from "@/lib/store";
 import { useDispatch, useSelector } from "react-redux";
-import React, { RefObject } from "react";
+import React, { RefObject, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { appRegistry } from "@/constants/constant";
 import { cn } from "@/lib/utils";
@@ -28,6 +28,7 @@ const ToolsRender = ({
     );
 
     const dispatch = useDispatch();
+    const [isDraggable, setIsDraggable] = useState(false);
 
     return (
         <AnimatePresence>
@@ -48,7 +49,7 @@ const ToolsRender = ({
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
                         exit={{ scale: 0 }}
-                        drag
+                        drag={isDraggable}
                         dragConstraints={containerRef} // limit where i can drag
                         whileDrag={{ cursor: "grab" }}
                         dragElastic={0}
@@ -69,6 +70,7 @@ const ToolsRender = ({
                             dispatch={dispatch}
                             key={tools}
                             fullScreenTools={fullScreenTools}
+                            setIsDraggable={setIsDraggable}
                         />
                     </motion.div>
                 );

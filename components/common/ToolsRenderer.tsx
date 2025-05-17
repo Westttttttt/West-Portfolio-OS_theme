@@ -7,13 +7,14 @@ import {
 } from "@/lib/features/toolsSlice";
 import { AppDispatch } from "@/lib/store";
 import { Maximize2, Minimize2, Minus, X } from "lucide-react";
-import React from "react";
+import React, { SetStateAction } from "react";
 
 interface Props {
     tools: string;
     AppComponent: React.ElementType;
     dispatch: AppDispatch;
     fullScreenTools: Tool[];
+    setIsDraggable: React.Dispatch<SetStateAction<boolean>>;
 }
 
 const ToolsRenderer = ({
@@ -21,11 +22,16 @@ const ToolsRenderer = ({
     AppComponent,
     dispatch,
     fullScreenTools,
+    setIsDraggable,
 }: Props) => {
     return (
         <>
             {" "}
-            <div className="flex gap-4 text-right justify-between w-full rounded-t-xl pr-3 py-1 bg-[#1e1e1e] pl-4 items-center">
+            <div
+                className="flex gap-4 text-right justify-between w-full rounded-t-xl pr-3 py-1 bg-[#1e1e1e] pl-4 items-center"
+                onMouseEnter={() => setIsDraggable(true)}
+                onMouseOut={() => setIsDraggable(false)}
+            >
                 <p className="text-xs">{tools}</p>
                 <div className="flex gap-4">
                     <Minus
