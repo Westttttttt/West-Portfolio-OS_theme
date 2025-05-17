@@ -32,6 +32,8 @@
 2. Learn new things about re-render in react
 3. Done creatorMessage app(Just a message from the creator)
 4. Change the draggable login, now the app can only drag when we drag only on the top bar
+5. Change my apps color to match the theme
+6. Done paint app
 
 ##### 💡 Things I learned on the way
 
