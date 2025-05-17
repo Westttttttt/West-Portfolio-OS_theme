@@ -39,7 +39,7 @@ const Icons = ({ Icon, name }: Props) => {
             />
             {(minimizeTools.includes(name as Tool) ||
                 currOpenTools.includes(name as Tool)) && (
-                <span className="absolute top-[14px] left-[10px] font-black text-blue-500">
+                <span className="absolute top-[12px] left-[10px] font-black text-blue-500">
                     .
                 </span>
             )}

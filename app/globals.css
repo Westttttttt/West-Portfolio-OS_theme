@@ -1,13 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&display=swap");
-
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
-
-* {
-    font-family: "Consolas";
-}
 
 @theme inline {
     --color-background: var(--background);
