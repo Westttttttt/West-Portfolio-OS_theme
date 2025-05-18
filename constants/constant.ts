@@ -26,7 +26,7 @@ import Settings from "../components/tools/Settings";
 import StopWatch from "../components/tools/StopWatch";
 import Terminal from "../components/tools/Terminal";
 import TodoApp from "../components/tools/TodoApp/TodoWrapper";
-import Chatbot from "../components/tools/Chatbot";
+import Chatbot from "../components/tools/chatBot/Chatbot";
 
 export const taskBarIcons = [
     {

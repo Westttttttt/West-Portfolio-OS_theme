@@ -36,10 +36,13 @@
 6. Done paint app
 
 #### 🗓️ May 18, 2025
+
 1. Get Gemini Api key from aistudio
 2. Implement Gemini api with nextjs api route and @google/genai sdk(from documentation)
 3. Convinced ai that the creator is me 🤣
-4. finally chatbot is done
+4. finally chatbot is done(Not yet tho 🤣)
+5. Add Syntex highlighting to my chatbot , if the bot reply with code
+6. Make it responsive to full screen
 
 ##### 💡 Things I learned on the way
 
@@ -62,16 +65,17 @@ ii) dragMomentum: this fix the element when we drag,i mean suppose when we drag 
 AnimatePresence only works when components are mounted or unmounted (i.e., added to or removed from the DOM). So if you're just toggling visibility with className="hidden", the component is still mounted — meaning AnimatePresence can't animate it.
 
 #### Obstacles (might be a little bit long 😅)
+
 At first, I tried implementing the drag functionality for apps using the onPointerDown event. As a result, the user could drag the app from anywhere — which is terrible UX. Typically, desktop apps only allow dragging from the top bar, right? But in my case, you could drag the app from literally anywhere 🤣.
 I thought, "Eh, not a big deal" (maybe I lacked visionary 😅) — until I started building the Paint 🖌️ app.
 The problem? When I tried drawing, it dragged the entire app window instead of letting me draw 😆. That had me rolling.
-    
+
 ##### How I fixed it:
+
 1. I added an isDraggable state to store a boolean.
 
 2. I added event listeners to the top bar of the app:
-    onMouseEnter → triggers when the mouse enters the top bar zone.
-    onMouseOut → triggers when the mouse leaves the top bar zone.
+   onMouseEnter → triggers when the mouse enters the top bar zone.
+   onMouseOut → triggers when the mouse leaves the top bar zone.
 
-5. Then I passed `drag={isDraggable}` to the motion.div, so now it only allows dragging when the mouse is over the top bar.
-
+3. Then I passed `drag={isDraggable}` to the motion.div, so now it only allows dragging when the mouse is over the top bar.

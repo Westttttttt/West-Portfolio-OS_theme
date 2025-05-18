@@ -1,12 +1,20 @@
 import { useState } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
 import { Loader2 } from "lucide-react";
+import { renderReply } from "./renderReply";
+import { useSelector } from "react-redux";
+import { RootState } from "@/lib/store";
+import { cn } from "@/lib/utils";
 
 const Chatbot = () => {
     const [userText, setUserText] = useState("");
     const [aiReply, setAiReply] = useState("");
     const [loading, setLoading] = useState(false);
+
+    const currFullScreenTools = useSelector(
+        (state: RootState) => state.toolState.fullScreenTools,
+    );
 
     const askQuestion = async () => {
         if (!userText.trim()) return;
@@ -24,7 +32,12 @@ const Chatbot = () => {
     };
 
     return (
-        <div className="w-[28rem] h-[32rem] p-6 rounded-3xl shadow-2xl backdrop-blur-3xl overflow-y-auto transition-all duration-300 element">
+        <div
+            className={cn(
+                "w-[28rem] h-[32rem] p-6 rounded-3xl shadow-2xl backdrop-blur-3xl overflow-y-auto transition-all duration-300 element",
+                currFullScreenTools.includes("Chatbot") && "w-full h-full",
+            )}
+        >
             {/* Header */}
             <h2 className="text-3xl font-extrabold text-center bg-clip-text text-white mb-6">
                 🤖 AI Chatbot
@@ -60,8 +73,8 @@ const Chatbot = () => {
                 <div className="mt-6 p-5 bg-white/30 dark:bg-zinc-800/30 rounded-2xl border border-zinc-200/30 dark:border-zinc-700/30 backdrop-blur-md text-zinc-700 dark:text-zinc-200 text-sm whitespace-pre-wrap transition-all duration-300 hover:shadow-lg">
                     <span className="font-semibold text-blue-600 dark:text-blue-400">
                         AI:
-                    </span>{" "}
-                    {aiReply}
+                    </span>
+                    <div className="mt-2">{renderReply(aiReply)}</div>
                 </div>
             )}
         </div>
