@@ -35,6 +35,12 @@
 5. Change my apps color to match the theme
 6. Done paint app
 
+#### 🗓️ May 18, 2025
+1. Get Gemini Api key from aistudio
+2. Implement Gemini api with nextjs api route and @google/genai sdk(from documentation)
+3. Convinced ai that the creator is me 🤣
+4. finally chatbot is done
+
 ##### 💡 Things I learned on the way
 
 1. Brush up my redux-toolkit knowledge(More like learning for the first time , i mean i forgot around 99% of it , as i always use zustand)
