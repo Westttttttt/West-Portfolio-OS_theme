@@ -45,8 +45,9 @@
 6. Make it responsive to full screen
 
 #### 🗓️ May 19, 2025
-1. Done NoteApp 
 
+1. Done NoteApp
+2. Done Mini Sootify app-> Unfortunately, spotify api only let us play 30s , so i dont use it 
 
 ##### 💡 Things I learned on the way
 
