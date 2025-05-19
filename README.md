@@ -44,6 +44,10 @@
 5. Add Syntex highlighting to my chatbot , if the bot reply with code
 6. Make it responsive to full screen
 
+#### 🗓️ May 19, 2025
+1. Done NoteApp 
+
+
 ##### 💡 Things I learned on the way
 
 1. Brush up my redux-toolkit knowledge(More like learning for the first time , i mean i forgot around 99% of it , as i always use zustand)
