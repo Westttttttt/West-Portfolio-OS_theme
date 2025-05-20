@@ -49,6 +49,10 @@
 1. Done NoteApp
 2. Done Mini Sootify app-> Unfortunately, spotify api only let us play 30s , so i dont use it 
 
+#### 🗓️ May 19, 2025
+
+1. Done vive-coding snake game app
+
 ##### 💡 Things I learned on the way
 
 1. Brush up my redux-toolkit knowledge(More like learning for the first time , i mean i forgot around 99% of it , as i always use zustand)
