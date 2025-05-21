@@ -52,7 +52,6 @@ const VisitorFeedback = () => {
     useEffect(() => {
         const fetchFeedback = async () => {
             const res: ResponseData = await axios.get("/api/feedback");
-            console.log("Data", res.data);
 
             if (res.data.success) {
                 setuserFeedback(res.data.feedbacks);

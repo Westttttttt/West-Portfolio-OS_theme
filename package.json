@@ -7,7 +7,8 @@
         "build": "next build",
         "start": "next start",
         "lint": "next lint",
-        "format": "prettier --write ."
+        "format": "prettier --write .",
+        "prismagenerate" : "prisma generate"
     },
     "dependencies": {
         "@google/genai": "^0.14.1",
