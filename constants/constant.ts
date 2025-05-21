@@ -6,9 +6,9 @@ import {
     Gamepad2,
     Laptop,
     ListTodo,
+    MessageCircleWarning,
     NotepadText,
     Paintbrush,
-    SquareTerminal,
     Timer,
 } from "lucide-react";
 import { PiSpotifyLogoBold } from "react-icons/pi";
@@ -24,7 +24,7 @@ import Notepad from "../components/tools/Notepad";
 import Paint from "../components/tools/Paint";
 import Settings from "../components/tools/Settings";
 import StopWatch from "../components/tools/StopWatch";
-import Terminal from "../components/tools/Terminal";
+import VisitorFeedback from "../components/tools/VisitorFeedback";
 import TodoApp from "../components/tools/TodoApp/TodoWrapper";
 import Chatbot from "../components/tools/chatBot/Chatbot";
 
@@ -34,7 +34,7 @@ export const taskBarIcons = [
         icon: Laptop,
     },
     { name: "Settings", icon: Cog },
-    { name: "Terminal", icon: SquareTerminal },
+    { name: "Visitor Feedback", icon: MessageCircleWarning },
     { name: "Code Editor", icon: VscVscode },
     { name: "Mini Spotify", icon: PiSpotifyLogoBold },
     { name: "Notepad", icon: NotepadText },
@@ -59,7 +59,7 @@ export const appRegistry: Record<string, React.ElementType> = {
     Paint,
     Settings,
     "Stop Watch": StopWatch,
-    Terminal,
+    "Visitor Feedback": VisitorFeedback,
     "Todo App": TodoApp,
 };
 

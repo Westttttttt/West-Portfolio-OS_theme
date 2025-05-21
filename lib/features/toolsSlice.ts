@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export type Tool =
     | "Settings"
-    | "Terminal"
+    | "Visitor Feedback"
     | "Code Editor"
     | "Mini Spotify"
     | "Notepad"
