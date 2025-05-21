@@ -47,11 +47,18 @@
 #### 🗓️ May 19, 2025
 
 1. Done NoteApp
-2. Done Mini Sootify app-> Unfortunately, spotify api only let us play 30s , so i dont use it 
+2. Done Mini Sootify app-> Unfortunately, spotify api only let us play 30s , so i dont use it
 
-#### 🗓️ May 19, 2025
+#### 🗓️ May 20, 2025
 
 1. Done vive-coding snake game app
+2. Added Prisma orm
+3. Use Superbase as DB
+
+#### 🗓️ May 21, 2025
+1. Add Visitor feedback page 
+2. Use axios to fetch
+
 
 ##### 💡 Things I learned on the way
 

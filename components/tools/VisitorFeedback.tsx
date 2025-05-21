@@ -1,13 +1,73 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
+import axios from "axios";
+
+interface FeedbackShape {
+    id: number;
+    goodName: string;
+    rating: number;
+    feedback: string;
+    createdAt: Date;
+}
+
+interface GetFeedbackType {
+    feedbacks: FeedbackShape[];
+    success: boolean;
+}
+
+interface ResponseData {
+    data: GetFeedbackType;
+}
+
+interface FormData {
+    goodName: string;
+    rating?: number;
+    feedback: string;
+}
 
 const VisitorFeedback = () => {
-    const [rating, setRating] = useState(0);
     const [hoveredStar, setHoveredStar] = useState(0);
+    const [userfeedback, setuserFeedback] = useState<FeedbackShape[] | []>([]);
+    const [formData, setFormData] = useState<FormData>({
+        goodName: "",
+        rating: 0,
+        feedback: "",
+    });
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const res: { data: { feedback: FeedbackShape; success: boolean } } =
+            await axios.post("/api/feedback", formData);
+
+        if (res.data.success) {
+            setuserFeedback([...userfeedback, res.data.feedback]);
+        }
+    };
+
+    useEffect(() => {
+        const fetchFeedback = async () => {
+            const res: ResponseData = await axios.get("/api/feedback");
+            console.log("Data", res.data);
+
+            if (res.data.success) {
+                setuserFeedback(res.data.feedbacks);
+            }
+        };
+
+        fetchFeedback();
+    }, []);
+
+    const dateConvert = (createdAt: Date) => {
+        const isoDate = createdAt;
+        const date = new Date(isoDate);
+
+        return date.toLocaleString();
+    };
 
     return (
         <div className="flex justify-center items-center h-[30rem] w-86 flex-col ">
@@ -17,7 +77,10 @@ const VisitorFeedback = () => {
                 transition={{ duration: 0.5 }}
                 className="w-full fit overflow-x-hidden overflow-y-auto element p-4"
             >
-                <form className="flex flex-col items-center shadow-lg text-gray-300 w-full">
+                <form
+                    className="flex flex-col items-center shadow-lg text-gray-300 w-full"
+                    onSubmit={handleSubmit}
+                >
                     <h1 className=" font-bold ">I&apos;d Love Your Feedback</h1>
                     <p className="text-gray-400 text-sm font-medium">
                         Tell us what you think!
@@ -30,14 +93,19 @@ const VisitorFeedback = () => {
                                 className="cursor-pointer relative"
                                 whileHover={{ scale: 1.3, rotate: 10 }}
                                 whileTap={{ scale: 0.9 }}
-                                onClick={() => setRating(num)}
+                                onClick={() =>
+                                    setFormData({
+                                        ...formData,
+                                        rating: num,
+                                    })
+                                }
                                 onMouseEnter={() => setHoveredStar(num)}
                                 onMouseLeave={() => setHoveredStar(0)}
                             >
                                 <Star
                                     className={cn(
                                         "h-8 w-8 transition-colors duration-200",
-                                        num <= rating
+                                        num <= formData.rating!
                                             ? "fill-yellow-400 text-yellow-400"
                                             : "text-gray-300",
                                         num <= hoveredStar &&
@@ -74,6 +142,12 @@ const VisitorFeedback = () => {
                                     placeholder="What did you love or what could be better?"
                                     className="resize-none w-full h-24 rounded-xl border-gray-300 focus:ring-2 focus:ring-blue-400 transition-all duration-200 text-gray-200 placeholder-gray-400"
                                     required
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            feedback: e.target.value,
+                                        })
+                                    }
                                 />
                             </motion.div>
                         </section>
@@ -90,10 +164,15 @@ const VisitorFeedback = () => {
                                     placeholder="Enter your name"
                                     className="w-full rounded-xl border-gray-300 focus:ring-2 focus:ring-blue-400 transition-all duration-200 text-gray-300 placeholder-gray-400"
                                     required
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            goodName: e.target.value,
+                                        })
+                                    }
                                 />
                             </motion.div>
                         </section>
-
                         <motion.button
                             className="w-full py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-300 shadow-md cursor-pointer mt-4 text-xs"
                             whileHover={{ scale: 1.05 }}
@@ -103,62 +182,49 @@ const VisitorFeedback = () => {
                         </motion.button>
                     </div>
                 </form>
-                <div className="w-full flex flex-col gap-3 overflow-hidden mt-4">
+
+                <div className="w-full flex flex-col gap-4 mt-6 max-h-[40vh] px-2 mb-4">
                     {/* Example Feedback - map through actual feedback array later */}
-                    {[
-                        {
-                            id: 1,
-                            name: "Alice",
-                            message: "Loved the animations and minimal look!",
-                            rating: 5,
-                        },
-                        {
-                            id: 2,
-                            name: "Bob",
-                            message: "Would love dark mode toggle 😄",
-                            rating: 4,
-                        },
-                        {
-                            id: 3,
-                            name: "West",
-                            message: "Absoulte trash ",
-                            rating: 0,
-                        },
-                        {
-                            id: 4,
-                            name: "Bimesh",
-                            message: "Good af",
-                            rating: 3,
-                        },
-                    ].map(({ id, name, message, rating }) => (
-                        <motion.div
-                            key={id}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.3 }}
-                            whileHover={{ scale: 1.1 }}
-                            className=" rounded-xl p-4 shadow-sm border border-[#fafafa41] overflow-hidden"
-                        >
-                            <div className="flex items-center justify-between mb-2">
-                                <h4 className="text-sm font-semibold text-white">
-                                    {name}
-                                </h4>
-                                <div className="flex">
-                                    {Array.from({ length: 5 }).map((_, i) => (
-                                        <Star
-                                            key={i}
-                                            className={`h-4 w-4 ${
-                                                i < rating
-                                                    ? "fill-yellow-400 text-yellow-400"
-                                                    : "text-gray-500"
-                                            }`}
-                                        />
-                                    ))}
+                    {userfeedback.map(
+                        ({ id, goodName, feedback, rating, createdAt }) => (
+                            <motion.div
+                                key={id}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.4, ease: "easeOut" }}
+                                whileHover={{ scale: 1.03, y: -2 }}
+                                className="px-3 py-2 shadow-md border border-[#fafafa1a] hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                            >
+                                <div className="flex items-center justify-between mb-3">
+                                    <h4 className="text-base font-semibold text-white tracking-tight">
+                                        {goodName}
+                                    </h4>
+                                    <p className="text-xs text-gray-400 font-medium">
+                                        {dateConvert(createdAt)}
+                                    </p>
                                 </div>
-                            </div>
-                            <p className="text-gray-300 text-sm">{message}</p>
-                        </motion.div>
-                    ))}
+                                <div className="flex items-center justify-between">
+                                    <p className="text-sm text-gray-300 leading-relaxed line-clamp-2">
+                                        {feedback}
+                                    </p>
+                                    <div className="flex shrink-0">
+                                        {Array.from({ length: 5 }).map(
+                                            (_, i) => (
+                                                <Star
+                                                    key={i}
+                                                    className={`h-3 w-3 transition-colors duration-200 ${
+                                                        i < rating
+                                                            ? "fill-yellow-400 text-yellow-400"
+                                                            : "text-gray-500"
+                                                    }`}
+                                                />
+                                            ),
+                                        )}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ),
+                    )}
                 </div>
             </motion.div>
         </div>
