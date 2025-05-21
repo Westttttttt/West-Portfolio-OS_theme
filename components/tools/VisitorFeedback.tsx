@@ -46,6 +46,11 @@ const VisitorFeedback = () => {
 
         if (res.data.success) {
             setuserFeedback([...userfeedback, res.data.feedback]);
+            setFormData({
+                goodName: "",
+                rating: 0,
+                feedback: "",
+            });
         }
     };
 

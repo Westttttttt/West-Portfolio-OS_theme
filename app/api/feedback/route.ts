@@ -14,6 +14,7 @@ export async function POST(request: Request) {
                     message: "Fill in all fields fker",
                     feedback: null,
                 }),
+                { status: 400 },
             );
         }
 
@@ -32,6 +33,7 @@ export async function POST(request: Request) {
                     message: "Feedback send successfully",
                     feedback: newFeedback,
                 }),
+                { status: 201 },
             );
         }
     } catch (error) {
@@ -40,8 +42,10 @@ export async function POST(request: Request) {
             JSON.stringify({
                 success: false,
                 message: "Error giving feedback",
+                error,
                 feedback: null,
             }),
+            { status: 500 },
         );
     }
 }
@@ -56,6 +60,7 @@ export async function GET() {
                     success: true,
                     feedbacks,
                 }),
+                { status: 200 },
             );
         }
     } catch (error) {
@@ -65,6 +70,7 @@ export async function GET() {
                 success: false,
                 feebacks: null,
             }),
+            { status: 500 },
         );
     }
 }
