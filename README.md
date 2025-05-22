@@ -59,6 +59,9 @@
 1. Add Visitor feedback page 
 2. Use axios to fetch
 
+#### 🗓️ May 22, 2025
+1. Remove prisma coz of deployment error
+2. User mongoose as mongodb orm
 
 ##### 💡 Things I learned on the way
 

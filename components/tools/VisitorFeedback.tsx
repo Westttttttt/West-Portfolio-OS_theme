@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 import axios from "axios";
 
 interface FeedbackShape {
-    id: number;
+    _id: number;
     goodName: string;
     rating: number;
     feedback: string;
@@ -190,9 +190,9 @@ const VisitorFeedback = () => {
                 <div className="w-full flex flex-col gap-4 mt-6 max-h-[40vh] px-2 mb-4">
                     {/* Example Feedback - map through actual feedback array later */}
                     {userfeedback.map(
-                        ({ id, goodName, feedback, rating, createdAt }) => (
+                        ({ _id, goodName, feedback, rating, createdAt }) => (
                             <motion.div
-                                key={id}
+                                key={_id}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.4, ease: "easeOut" }}

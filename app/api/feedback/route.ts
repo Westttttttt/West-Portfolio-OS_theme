@@ -1,6 +1,5 @@
-import { PrismaClient } from "@/generated/prisma";
-
-const prisma = new PrismaClient();
+import { connectDB } from "@/lib/db";
+import Feedback from "@/models/feedback.model";
 
 export async function POST(request: Request) {
     try {
@@ -18,20 +17,21 @@ export async function POST(request: Request) {
             );
         }
 
-        const newFeedback = await prisma.userFeedbacks.create({
-            data: {
-                goodName,
-                rating,
-                feedback,
-            },
+        await connectDB();
+        const newFeedback = new Feedback({
+            goodName,
+            rating,
+            feedback,
         });
+
+        const savedFeedback = await newFeedback.save();
 
         if (newFeedback) {
             return new Response(
                 JSON.stringify({
                     success: true,
                     message: "Feedback send successfully",
-                    feedback: newFeedback,
+                    feedback: savedFeedback,
                 }),
                 { status: 201 },
             );
@@ -52,7 +52,8 @@ export async function POST(request: Request) {
 
 export async function GET() {
     try {
-        const feedbacks = await prisma.userFeedbacks.findMany();
+        await connectDB();
+        const feedbacks = await Feedback.find();
 
         if (feedbacks) {
             return new Response(
@@ -68,7 +69,7 @@ export async function GET() {
         return new Response(
             JSON.stringify({
                 success: false,
-                feebacks: null,
+                feebacks: [],
             }),
             { status: 500 },
         );
