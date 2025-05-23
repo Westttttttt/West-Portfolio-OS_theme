@@ -42,7 +42,7 @@ const VisitorFeedback = () => {
         e.preventDefault();
 
         const res: { data: { feedback: FeedbackShape; success: boolean } } =
-            await axios.post("/api/feedback", formData);
+            await axios.post("/api/feedback", JSON.stringify(formData));
 
         if (res.data.success) {
             setuserFeedback([...userfeedback, res.data.feedback]);
@@ -51,6 +51,7 @@ const VisitorFeedback = () => {
                 rating: 0,
                 feedback: "",
             });
+        } else {
         }
     };
 
@@ -152,6 +153,7 @@ const VisitorFeedback = () => {
                                             feedback: e.target.value,
                                         })
                                     }
+                                    value={formData.feedback}
                                 />
                             </motion.div>
                         </section>
@@ -174,6 +176,7 @@ const VisitorFeedback = () => {
                                             goodName: e.target.value,
                                         })
                                     }
+                                    value={formData.goodName}
                                 />
                             </motion.div>
                         </section>
@@ -188,6 +191,7 @@ const VisitorFeedback = () => {
                 </form>
 
                 <div className="w-full flex flex-col gap-4 mt-6 max-h-[40vh] px-2 mb-4">
+                    <h1>Visitors feebacks 👇: </h1>
                     {/* Example Feedback - map through actual feedback array later */}
                     {userfeedback.map(
                         ({ _id, goodName, feedback, rating, createdAt }) => (

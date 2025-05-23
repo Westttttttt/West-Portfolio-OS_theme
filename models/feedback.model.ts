@@ -4,6 +4,7 @@ export interface IFeedback extends Document {
     goodName: string;
     rating: number;
     feedback: string;
+    createdAt: Date;
 }
 
 const feedbackSchema = new Schema<IFeedback>({
@@ -18,6 +19,10 @@ const feedbackSchema = new Schema<IFeedback>({
     feedback: {
         type: String,
         required: true,
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
     },
 });
 
