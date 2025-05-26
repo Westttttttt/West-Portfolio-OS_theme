@@ -15,7 +15,7 @@ import { PiSpotifyLogoBold } from "react-icons/pi";
 import { VscVscode } from "react-icons/vsc";
 
 import Calculatorr from "../components/tools/Calculator";
-import CodeEditor from "../components/tools/CodeEditor";
+import CodeEditor from "../components/tools/CodeEditor/CodeEditor";
 import Creator from "../components/tools/Creator";
 import Games from "../components/tools/Games";
 import MiniSpotify from "../components/tools/MiniSpotify";
@@ -27,6 +27,10 @@ import StopWatch from "../components/tools/StopWatch";
 import VisitorFeedback from "../components/tools/VisitorFeedback";
 import TodoApp from "../components/tools/TodoApp/TodoWrapper";
 import Chatbot from "../components/tools/chatBot/Chatbot";
+import { RiJavascriptFill } from "react-icons/ri";
+import { FaPython } from "react-icons/fa";
+import { FaJava } from "react-icons/fa";
+import { BiLogoTypescript } from "react-icons/bi";
 
 export const taskBarIcons = [
     {
@@ -105,5 +109,72 @@ export const songs = [
         songSrc: "/assets/songs/WaitingForTheEnd.mp3",
         songCover:
             "https://i.pinimg.com/736x/90/2f/1a/902f1a5aca89db7627936018b4004a53.jpg",
+    },
+];
+
+export const languages = [
+    {
+        name: "JavaScript",
+        icon: RiJavascriptFill,
+        color: "yellow",
+    },
+    {
+        name: "Python",
+        icon: FaPython,
+        color: "#4483B5",
+    },
+    {
+        name: "Java",
+        icon: FaJava,
+        color: "red",
+    },
+    {
+        name: "TypeScript",
+        icon: BiLogoTypescript,
+        color: "#3B82F6",
+    },
+];
+
+export const fontStyles = [
+    "Fira Code",
+    "JetBrains Mono",
+    "Monaco",
+    "Consolas",
+    "Hack",
+];
+
+export const defaultSnippets = [
+    {
+        name: "typescript",
+        defaultCode:
+            "function helloMom(): void {\n" +
+            '  console.log("helloMoM");\n' +
+            "}\n\n" +
+            "helloMom();",
+    },
+    {
+        name: "python",
+        defaultCode:
+            "def helloMom():\n" + '    print("helloMoM")\n\n' + "helloMom()",
+    },
+    {
+        name: "javascript",
+        defaultCode:
+            "function helloMom() {\n" +
+            '  console.log("helloMoM");\n' +
+            "}\n\n" +
+            "helloMom();",
+    },
+    {
+        name: "java",
+        defaultCode:
+            "public class Main {\n" +
+            "  public static void main(String[] args) {\n" +
+            "    helloMom();\n" +
+            "  }\n\n" +
+            "  public static void helloMom() {\n" +
+            '    System.out.println("helloMoM");\n' +
+            "  }\n" +
+            "}",
     },
 ];

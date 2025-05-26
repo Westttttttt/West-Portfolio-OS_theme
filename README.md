@@ -63,6 +63,9 @@
 1. Remove prisma coz of deployment error
 2. User mongoose as mongodb orm
 
+### 🗓️ May 22, 2025
+1. Done making code editor , took so much time to make 
+
 ##### 💡 Things I learned on the way
 
 1. Brush up my redux-toolkit knowledge(More like learning for the first time , i mean i forgot around 99% of it , as i always use zustand)
@@ -72,6 +75,7 @@
 3. I didn't know that useState re-renders the component but useRef doesn't haha
 
 4. Learn some new browser event handler
+
 
 #### Just in case
 

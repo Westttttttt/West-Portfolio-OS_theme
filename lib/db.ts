@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
-
 export const connectDB = async () => {
+    const MONGODB_URI = process.env.MONGODB_URI;
     let isConnected = false;
     if (!MONGODB_URI) {
         throw new Error("Please provide a mongodb_uri");
