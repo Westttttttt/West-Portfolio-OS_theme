@@ -10,6 +10,7 @@ import axios from "axios";
 // import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { motion } from "motion/react";
 
 export default function Home() {
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -53,12 +54,15 @@ export default function Home() {
         >
             {isLoading && <TextHoverEffect text="West OS" />}
             {!isLoading && currSelectedWallpaper && (
-                <img
+                <motion.img
                     src={currSelectedWallpaper}
                     width={1000}
                     height={1000}
                     alt="bg-image"
                     className="w-[100%] h-screen fixed -z-30 object-cover"
+                    initial={{ opacity: 0 }} // Start fully transparent
+                    animate={{ opacity: 1 }} // Fade to fully opaque
+                    transition={{ duration: 0.5, ease: "easeInOut" }} // Smooth 1-second fade
                 />
             )}
             <ToolsRendererWrapper containerRef={containerRef} />

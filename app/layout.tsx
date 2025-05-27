@@ -4,8 +4,8 @@ import LayoutWrapper from "@/components/common/LayoutWrapper";
 import { Sour_Gummy } from "next/font/google";
 
 export const metadata: Metadata = {
-    title: "West Portfolio",
-    description: "Unique Portfolio with unique OS based style",
+    title: "West OS",
+    description: "West OS , cheap copy",
 };
 
 const sourGummy = Sour_Gummy({
