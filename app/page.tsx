@@ -2,6 +2,7 @@
 
 import ToolsRendererWrapper from "@/components/common/ToolsRendererWrapper";
 import TaskBar from "@/components/taskbarComponents/Taskbar";
+import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { wallpaperImages } from "@/constants/constant";
 import { changeCurrentWallpaper } from "@/lib/features/wallpaperSlice";
 import { RootState } from "@/lib/store";
@@ -19,12 +20,14 @@ export default function Home() {
     const currSelectedWallpaper = useSelector(
         (state: RootState) => state.wallpaperState.currentWallpaper,
     );
+    const [isLoading, setIsLoading] = useState(false);
 
     const dispatch = useDispatch();
     console.log("currentWallpaper SRC", currentWallpaper);
 
     useEffect(() => {
         const fetchWallpaper = async () => {
+            setIsLoading(true);
             const res: { data: { success: boolean; currWallpaper: string } } =
                 await axios.get("/api/wallpaper");
             if (res.data.currWallpaper) {
@@ -37,6 +40,7 @@ export default function Home() {
                     dispatch(changeCurrentWallpaper(selctedWallpaperSrc));
                 }
             }
+            setIsLoading(false);
         };
 
         fetchWallpaper();
@@ -47,7 +51,8 @@ export default function Home() {
             className=" w-full h-screen relative flex items-center justify-center overflow-hidden"
             ref={containerRef}
         >
-            {currSelectedWallpaper && (
+            {isLoading && <TextHoverEffect text="West OS" />}
+            {!isLoading && currSelectedWallpaper && (
                 <img
                     src={currSelectedWallpaper}
                     width={1000}
