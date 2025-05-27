@@ -56,15 +56,18 @@
 3. Use Superbase as DB
 
 #### 🗓️ May 21, 2025
-1. Add Visitor feedback page 
+
+1. Add Visitor feedback page
 2. Use axios to fetch
 
 #### 🗓️ May 22, 2025
+
 1. Remove prisma coz of deployment error
 2. User mongoose as mongodb orm
 
 ### 🗓️ May 22, 2025
-1. Done making code editor , took so much time to make 
+
+1. Done making code editor , took so much time to make
 
 ##### 💡 Things I learned on the way
 
@@ -75,7 +78,6 @@
 3. I didn't know that useState re-renders the component but useRef doesn't haha
 
 4. Learn some new browser event handler
-
 
 #### Just in case
 

@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export type Tool =
-    | "Settings"
     | "Visitor Feedback"
     | "Code Editor"
     | "Mini Spotify"
@@ -13,7 +12,7 @@ export type Tool =
     | "Todo App"
     | "Creator"
     | "Paint"
-    | "My Pc";
+    | "Wallpaper";
 
 type toolState = {
     openTools: Tool[];

@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import toolState from "./features/toolsSlice";
+import wallpaperState from "./features/wallpaperSlice";
 
 export const store = configureStore({
     reducer: {
         toolState: toolState,
+        wallpaperState: wallpaperState,
     },
 });
 

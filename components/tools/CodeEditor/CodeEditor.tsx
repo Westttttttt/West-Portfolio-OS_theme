@@ -25,7 +25,7 @@ const CodeEditor = () => {
     const [extension, setExtension] = useState("");
     const [codeOutput, setCodeOutput] = useState<string | null>("");
     const [codeMessage, setCodeMessage] = useState("");
-    console.log("extension", extension);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleEditorWillMount: BeforeMount = (monaco) => {
         monaco.editor.defineTheme("transparent", {
@@ -39,6 +39,7 @@ const CodeEditor = () => {
     };
 
     const handleCodeExecute = async () => {
+        setIsLoading(true);
         const res: ExecuteResponse = await axios.post("/api/code_execute", {
             language: selectedLanguage,
             content: code,
@@ -52,6 +53,7 @@ const CodeEditor = () => {
 
         setCodeOutput(res.data.result);
         setCodeMessage(lastLine);
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -114,6 +116,7 @@ const CodeEditor = () => {
                     setSelectedFont={setSelectedFont}
                     selectedFont={selectedFont}
                     handleCodeExecute={handleCodeExecute}
+                    isLoading={isLoading}
                 />
                 <MonacoEditor
                     beforeMount={handleEditorWillMount}

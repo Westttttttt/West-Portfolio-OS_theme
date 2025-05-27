@@ -10,7 +10,7 @@ import {
 import { fontStyles, languages } from "@/constants/constant";
 import { setToLocalStorage } from "@/lib/localStorageHelper";
 import { EditorFontTypes, EditorLanguagesTypes } from "@/types/types";
-import { CodeXml, Play } from "lucide-react";
+import { CodeXml, LoaderCircle, Play } from "lucide-react";
 import React, { SetStateAction } from "react";
 
 interface Props {
@@ -21,6 +21,7 @@ interface Props {
     selectedLanguage: EditorLanguagesTypes;
     selectedFont: string;
     handleCodeExecute: () => void;
+    isLoading: boolean;
 }
 
 const EditorHeader = ({
@@ -31,6 +32,7 @@ const EditorHeader = ({
     selectedLanguage,
     selectedFont,
     handleCodeExecute,
+    isLoading,
 }: Props) => {
     return (
         <header className="py-2 bg-[#121212] flex justify-between px-6 items-center">
@@ -91,7 +93,7 @@ const EditorHeader = ({
                     type="number"
                     min={10}
                     max={20}
-                    value={fontSize || ""}
+                    value={fontSize}
                     onChange={(e) => {
                         const value = e.target.value;
                         setFontSize(value);
@@ -103,7 +105,12 @@ const EditorHeader = ({
                     className="bg-blue-600 hover:bg-blue-700 text-white rounded-[10px] cursor-pointer text-xs"
                     onClick={handleCodeExecute}
                 >
-                    Run <Play />
+                    Run{" "}
+                    {isLoading ? (
+                        <LoaderCircle className="animate-spin" />
+                    ) : (
+                        <Play />
+                    )}
                 </Button>
             </div>
         </header>

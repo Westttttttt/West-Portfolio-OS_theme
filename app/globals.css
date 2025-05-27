@@ -130,10 +130,6 @@
     }
 }
 
-.home-bg {
-    background-image: url("../public/assets/wallpapers/digital-art-dark-cosmic-night-sky.jpg");
-}
-
 .element {
     scrollbar-width: thin;
     scrollbar-color: #6e706f transparent;

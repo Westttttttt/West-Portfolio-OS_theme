@@ -2,14 +2,13 @@ import {
     Bot,
     Calculator,
     CircleUser,
-    Cog,
     Gamepad2,
-    Laptop,
     ListTodo,
     MessageCircleWarning,
     NotepadText,
     Paintbrush,
     Timer,
+    Wallpaper,
 } from "lucide-react";
 import { PiSpotifyLogoBold } from "react-icons/pi";
 import { VscVscode } from "react-icons/vsc";
@@ -19,25 +18,20 @@ import CodeEditor from "../components/tools/CodeEditor/CodeEditor";
 import Creator from "../components/tools/Creator";
 import Games from "../components/tools/Games";
 import MiniSpotify from "../components/tools/MiniSpotify";
-import MyPc from "../components/tools/MyPc";
 import Notepad from "../components/tools/Notepad";
 import Paint from "../components/tools/Paint";
-import Settings from "../components/tools/Settings";
 import StopWatch from "../components/tools/StopWatch";
 import VisitorFeedback from "../components/tools/VisitorFeedback";
 import TodoApp from "../components/tools/TodoApp/TodoWrapper";
 import Chatbot from "../components/tools/chatBot/Chatbot";
+import WallpaperApp from "@/components/tools/Wallpaper";
 import { RiJavascriptFill } from "react-icons/ri";
 import { FaPython } from "react-icons/fa";
 import { FaJava } from "react-icons/fa";
 import { BiLogoTypescript } from "react-icons/bi";
 
 export const taskBarIcons = [
-    {
-        name: "My Pc",
-        icon: Laptop,
-    },
-    { name: "Settings", icon: Cog },
+    { name: "Wallpaper", icon: Wallpaper },
     { name: "Visitor Feedback", icon: MessageCircleWarning },
     { name: "Code Editor", icon: VscVscode },
     { name: "Mini Spotify", icon: PiSpotifyLogoBold },
@@ -58,10 +52,9 @@ export const appRegistry: Record<string, React.ElementType> = {
     Creator,
     Games,
     "Mini Spotify": MiniSpotify,
-    "My Pc": MyPc,
     Notepad,
     Paint,
-    Settings,
+    Wallpaper: WallpaperApp,
     "Stop Watch": StopWatch,
     "Visitor Feedback": VisitorFeedback,
     "Todo App": TodoApp,
@@ -176,5 +169,28 @@ export const defaultSnippets = [
             '    System.out.println("helloMoM");\n' +
             "  }\n" +
             "}",
+    },
+];
+
+export const wallpaperImages = [
+    {
+        name: "CosmicNight",
+        src: "/assets/wallpapers/CosmicNight.webp",
+    },
+    {
+        name: "Deer",
+        src: "/assets/wallpapers/Deer.webp",
+    },
+    {
+        name: "Flowers",
+        src: "/assets/wallpapers/Flowers.webp",
+    },
+    {
+        name: "Stars",
+        src: "/assets/wallpapers/Stars.webp",
+    },
+    {
+        name: "Storm",
+        src: "/assets/wallpapers/Storm.webp",
     },
 ];
